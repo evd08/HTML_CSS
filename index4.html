@@ -12,13 +12,17 @@
       crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style type="text/css">
-      /* body {
+      body {
         font-family: 'Lato', sans-serif;
-      } */
+      }
 
       .nosto-container {
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 8vw;
+        padding-right: 8vw;
+      }
+
+      .nosto-container .header {
+        border-bottom: 2px solid rgb(155, 153, 153);
       }
 
       /* .slick-prev:before {
@@ -59,7 +63,7 @@
 
   <body>
     <div class="nosto-container">
-      <h1>You might like these...</h1>
+      <h1 class="header">You may like these...</h1>
       <div class="items">
       </div>
     </div>
@@ -159,7 +163,7 @@
         sale.style.background = "red";
         sale.style.color = "#fff";
         sale.style.position = "absolute";
-        sale.style.fontFamily = "'Lato', sans-serif";
+        
         const div = document.createElement('div');
         const imgDiv = document.createElement('div');
         const img = document.createElement('img');
@@ -168,15 +172,11 @@
 
         img.src = json.items[i].imgsrc;
         name.textContent = json.items[i].productname;
-        name.style.fontFamily = "'Lato', sans-serif";
         price.textContent = json.items[i].productlistprice;
-        price.style.fontFamily = "'Lato', sans-serif";
 
-        // console.log(img);
         imgDiv.appendChild(img);
         imgDiv.appendChild(sale);
         imgDiv.style.position = "relative";
-        // imgDiv.classList.add("img-div");
         div.appendChild(imgDiv);
         div.appendChild(name);
         div.appendChild(price);
@@ -184,6 +184,7 @@
         dataFragment.appendChild(div);
       }
       // console.log(dataFragment);
+
       contain.appendChild(dataFragment);
     </script>
 
