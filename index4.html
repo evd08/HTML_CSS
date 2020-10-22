@@ -42,10 +42,6 @@
         background: #000;
       }
 
-      /* .slick-prev, .slick-next:hover{
-        background: rgb(68, 67, 67);
-      } */
-
       .element-wrapper {
         text-align: center;
         padding-left: 10px;
@@ -153,11 +149,7 @@
     <script type="text/javascript">
       var dataFragment = document.createDocumentFragment();
       var contain = document.querySelector('.items');
-
-      // const sale = document.createElement('p');
-      // sale.textContent = "SALE";
-      // sale.style.background = "red";
-
+      
       for (let i = 0; i < json.items.length; i++) {
         const sale = document.createElement('div');
         sale.textContent = "SALE";
@@ -167,7 +159,7 @@
         sale.style.position = "absolute";
         sale.style.top = ".6em";
         sale.style.right = ".6em";
-
+        sale.style.fontWeight = "bold";
 
         const div = document.createElement('div');
         const imgDiv = document.createElement('div');
@@ -179,13 +171,16 @@
         name.textContent = json.items[i].productname;
         price.textContent = json.items[i].productlistprice;
 
+        div.classList.add("element-wrapper");
+        imgDiv.style.position = "relative";
+        name.style.marginBlockEnd = ".5em";
+        price.style.marginBlockStart = "0px";
+
         imgDiv.appendChild(img);
         imgDiv.appendChild(sale);
-        imgDiv.style.position = "relative";
         div.appendChild(imgDiv);
         div.appendChild(name);
         div.appendChild(price);
-        div.classList.add("element-wrapper");
         dataFragment.appendChild(div);
       }
       // console.log(dataFragment);
