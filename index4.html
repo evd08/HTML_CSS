@@ -12,13 +12,14 @@
       crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style type="text/css">
-      body {
+      /* body {
         font-family: 'Lato', sans-serif;
-      }
+      } */
 
       .nosto-container {
         padding-left: 8vw;
         padding-right: 8vw;
+        font-family: 'Lato', sans-serif;
       }
 
       .nosto-container .header {
@@ -57,6 +58,7 @@
 
       .slick-slide img {
         width: 100%;
+        /* position: absolute; */
       }
     </style>
   </head>
@@ -163,7 +165,10 @@
         sale.style.background = "red";
         sale.style.color = "#fff";
         sale.style.position = "absolute";
-        
+        sale.style.top = ".6em";
+        sale.style.right = ".6em";
+
+
         const div = document.createElement('div');
         const imgDiv = document.createElement('div');
         const img = document.createElement('img');
