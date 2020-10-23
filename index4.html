@@ -22,6 +22,25 @@
         border-bottom: 2px solid rgb(155, 153, 153);
       }
 
+      @media(max-width: 400px) {
+        .nosto-container .header {
+          font-size: large;
+        }
+
+        .items h5 { /* productname */
+          font-size: small;
+          font-weight: normal;
+        }
+
+        .items h3 { /* productprice */
+          font-size: medium;
+        }
+
+        .items span {
+          font-size: small;
+        }
+      }
+
       /* .slick-prev:before {
         content: "<";
         color: rgb(58, 56, 56);
@@ -157,11 +176,14 @@
         const img = document.createElement('img');
         const name = document.createElement('h5');
         const price = document.createElement('h3');
-        const oldPrice = document.createElement("div");
+        const oldPriceDiv = document.createElement("div");
+        const was = document.createElement("span");
+        const oldPrice = document.createElement("span");
 
         img.src = json.items[i].imgsrc;
         name.textContent = json.items[i].productname;
         price.textContent = json.items[i].productlistprice;
+        
 
         items.classList.add("element-wrapper");
         imgDiv.style.position = "relative";
@@ -177,9 +199,15 @@
         if (json.items[i].discounted==="true") {
           imgDiv.appendChild(sale);
           price.textContent = json.items[i].productprice;
+          was.textContent = "was ";
           oldPrice.textContent = json.items[i].productlistprice;
           price.style.color = "red";
-          items.appendChild(oldPrice);
+          was.style.fontWeight = "lighter";
+          was.style.fontStyle = "italic";
+          oldPrice.style.fontStyle = "italic";
+          oldPriceDiv.appendChild(was);
+          oldPriceDiv.appendChild(oldPrice);
+          items.appendChild(oldPriceDiv);
         } 
 
         dataFragment.appendChild(items);
@@ -209,17 +237,6 @@
               dots: false
             }
           }
-          // {
-          //   breakpoint: 600,
-          //   settings: {
-          //     arrows: true,
-          //     slidesToShow: 2,
-          //     slidesToScroll: 1
-          //   }
-          // }
-          // You can unslick at a given breakpoint now by adding:
-          // settings: "unslick"
-          // instead of a settings object
         ]
       });
     </script>
