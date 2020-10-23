@@ -12,10 +12,6 @@
       crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style type="text/css">
-      /* body {
-        font-family: 'Lato', sans-serif;
-      } */
-
       .nosto-container {
         padding-left: 8vw;
         padding-right: 8vw;
@@ -48,20 +44,15 @@
         padding-right: 10px;
       }
 
-      /* .element-wrapper h5 {
-        font-family: 'Lato', sans-serif;
-      } */
-
       .slick-slide img {
         width: 100%;
-        /* position: absolute; */
       }
     </style>
   </head>
 
   <body>
     <div class="nosto-container">
-      <h1 class="header">You may like these...</h1>
+      <h2 class="header">You may like these...</h2>
       <div class="items">
       </div>
     </div>
@@ -166,7 +157,7 @@
         const img = document.createElement('img');
         const name = document.createElement('h5');
         const price = document.createElement('h3');
-        const oldPrice = document.createElement("p");
+        const oldPrice = document.createElement("div");
 
         img.src = json.items[i].imgsrc;
         name.textContent = json.items[i].productname;
@@ -176,44 +167,20 @@
         imgDiv.style.position = "relative";
         name.style.marginBlockEnd = ".5em";
         price.style.marginBlockStart = "0px";
+        price.style.marginBlockEnd = "0px";
 
         imgDiv.appendChild(img);
-        // imgDiv.appendChild(sale);
         items.appendChild(imgDiv);
         items.appendChild(name);
         items.appendChild(price);
-
-        // if (json.items[i].discounted) {
-        //   imgDiv.appendChild(sale);
-        //   div.appendChild(imgDiv);
-        //   div.appendChild(name);
-        //   price.textContent = json.items[i].productprice;
-        //   price.style.color = "red";
-        //   // const oldPriceDiv = document.createElement("div")
-        //   // oldPriceDiv.textContent = "was";
-        //   // const was = document.createElement("p");
-        //   const oldPrice = document.createElement("p");
-        //   oldPrice.textContent = json.items[i].productlistprice;
-        //   div.appendChild(price);
-        //   div.appendChild(oldPrice);
-        // } else {
-        //   price.textContent = json.items[i].productprice;
-        //   div.appendChild(price);
-        // }
-
-        // div.appendChild(price);
 
         if (json.items[i].discounted==="true") {
           imgDiv.appendChild(sale);
           price.textContent = json.items[i].productprice;
           oldPrice.textContent = json.items[i].productlistprice;
           price.style.color = "red";
-          // items.appendChild(price);
           items.appendChild(oldPrice);
         } 
-        // else {
-        //   sale.style.visibility = "hidden";
-        // }
 
         dataFragment.appendChild(items);
       }
@@ -233,23 +200,23 @@
         dots: false,
         responsive: [
           {
-            breakpoint: 1024,
+            breakpoint: 768,
             settings: {
               arrows: true,
-              slidesToShow: 3,
+              slidesToShow: 2,
               slidesToScroll: 1,
               infinite: true,
               dots: false
             }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              arrows: true,
-              slidesToShow: 2,
-              slidesToScroll: 1
-            }
           }
+          // {
+          //   breakpoint: 600,
+          //   settings: {
+          //     arrows: true,
+          //     slidesToShow: 2,
+          //     slidesToScroll: 1
+          //   }
+          // }
           // You can unslick at a given breakpoint now by adding:
           // settings: "unslick"
           // instead of a settings object
