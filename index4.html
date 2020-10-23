@@ -149,7 +149,7 @@
     <script type="text/javascript">
       var dataFragment = document.createDocumentFragment();
       var contain = document.querySelector('.items');
-      
+
       for (let i = 0; i < json.items.length; i++) {
         const sale = document.createElement('div');
         sale.textContent = "SALE";
@@ -161,38 +161,67 @@
         sale.style.right = ".6em";
         sale.style.fontWeight = "bold";
 
-        const div = document.createElement('div');
+        const items = document.createElement('div');
         const imgDiv = document.createElement('div');
         const img = document.createElement('img');
         const name = document.createElement('h5');
         const price = document.createElement('h3');
+        const oldPrice = document.createElement("p");
 
         img.src = json.items[i].imgsrc;
         name.textContent = json.items[i].productname;
         price.textContent = json.items[i].productlistprice;
 
-        div.classList.add("element-wrapper");
+        items.classList.add("element-wrapper");
         imgDiv.style.position = "relative";
         name.style.marginBlockEnd = ".5em";
         price.style.marginBlockStart = "0px";
 
         imgDiv.appendChild(img);
-        imgDiv.appendChild(sale);
-        div.appendChild(imgDiv);
-        div.appendChild(name);
-        div.appendChild(price);
-        dataFragment.appendChild(div);
+        // imgDiv.appendChild(sale);
+        items.appendChild(imgDiv);
+        items.appendChild(name);
+        items.appendChild(price);
+
+        // if (json.items[i].discounted) {
+        //   imgDiv.appendChild(sale);
+        //   div.appendChild(imgDiv);
+        //   div.appendChild(name);
+        //   price.textContent = json.items[i].productprice;
+        //   price.style.color = "red";
+        //   // const oldPriceDiv = document.createElement("div")
+        //   // oldPriceDiv.textContent = "was";
+        //   // const was = document.createElement("p");
+        //   const oldPrice = document.createElement("p");
+        //   oldPrice.textContent = json.items[i].productlistprice;
+        //   div.appendChild(price);
+        //   div.appendChild(oldPrice);
+        // } else {
+        //   price.textContent = json.items[i].productprice;
+        //   div.appendChild(price);
+        // }
+
+        // div.appendChild(price);
+
+        if (json.items[i].discounted==="true") {
+          imgDiv.appendChild(sale);
+          price.textContent = json.items[i].productprice;
+          oldPrice.textContent = json.items[i].productlistprice;
+          price.style.color = "red";
+          // items.appendChild(price);
+          items.appendChild(oldPrice);
+        } 
+        // else {
+        //   sale.style.visibility = "hidden";
+        // }
+
+        dataFragment.appendChild(items);
       }
-      // console.log(dataFragment);
 
       contain.appendChild(dataFragment);
     </script>
 
     <script type="text/javascript">
-      // const nosto = document.querySelector('.nosto-container');
-      // const header = document.createElement('h1');
-      // header.textContent = "You may like these..."
-      // nosto.appendChild(header);
       $('.items').slick({
         arrows: true,
         infinite: true,
