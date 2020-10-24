@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
-      integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
-      crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-      integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
-      crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style type="text/css">
       .nosto-container {
@@ -20,11 +16,47 @@
 
       .nosto-container .header {
         border-bottom: 2px solid rgb(155, 153, 153);
+        padding-bottom: 15px;
+      }
+
+      .slick-prev:before {
+        content: "<";
+        color: rgb(58, 56, 56);
+        font-size: 30px;
+      }
+
+      .slick-next:before {
+        content: ">";
+        color: rgb(58, 56, 56);
+        font-size: 30px;
+      }
+
+      .slick-prev:before, .slick-next:before {
+        /* background: #000; */
+        color: black;
+        font-size: 30px;
+      }
+
+      .element-wrapper {
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .slick-slide img {
+        width: 100%;
+      }
+
+      .slick-list {margin: 0 -27px;}
+      .slick-slide {padding: 0 27px;}
+
+      button {
+        z-index: 3;
       }
 
       @media(max-width: 400px) {
         .nosto-container .header {
           font-size: large;
+          padding-bottom: 5px;
         }
 
         .items h5 { /* productname */
@@ -41,30 +73,9 @@
         }
       }
 
-      /* .slick-prev:before {
-        content: "<";
-        color: rgb(58, 56, 56);
-        font-size: 30px;
-      }
-
-      .slick-next:before {
-        content: ">";
-        color: rgb(58, 56, 56);
-        font-size: 30px;
-      } */
-
-      .slick-prev:before, .slick-next:before {
-        background: #000;
-      }
-
-      .element-wrapper {
-        text-align: center;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .slick-slide img {
-        width: 100%;
+      @media(max-width:500px) {
+        .slick-list {margin: 0 -15px;}
+        .slick-slide {padding: 0 15px;}
       }
     </style>
   </head>
@@ -171,7 +182,7 @@
         sale.style.right = ".6em";
         sale.style.fontWeight = "bold";
 
-        const items = document.createElement('div');
+        const item = document.createElement('a');
         const imgDiv = document.createElement('div');
         const img = document.createElement('img');
         const name = document.createElement('h5');
@@ -183,18 +194,17 @@
         img.src = json.items[i].imgsrc;
         name.textContent = json.items[i].productname;
         price.textContent = json.items[i].productlistprice;
-        
 
-        items.classList.add("element-wrapper");
+        item.classList.add("element-wrapper");
         imgDiv.style.position = "relative";
         name.style.marginBlockEnd = ".5em";
         price.style.marginBlockStart = "0px";
         price.style.marginBlockEnd = "0px";
 
         imgDiv.appendChild(img);
-        items.appendChild(imgDiv);
-        items.appendChild(name);
-        items.appendChild(price);
+        item.appendChild(imgDiv);
+        item.appendChild(name);
+        item.appendChild(price);
 
         if (json.items[i].discounted==="true") {
           imgDiv.appendChild(sale);
@@ -207,10 +217,10 @@
           oldPrice.style.fontStyle = "italic";
           oldPriceDiv.appendChild(was);
           oldPriceDiv.appendChild(oldPrice);
-          items.appendChild(oldPriceDiv);
+          item.appendChild(oldPriceDiv);
         } 
-
-        dataFragment.appendChild(items);
+      
+        dataFragment.appendChild(item);
       }
 
       contain.appendChild(dataFragment);
@@ -221,11 +231,9 @@
         arrows: true,
         infinite: true,
         autoplay: false,
-        autoplaySpeed: 1000,
-        speed: 300,
+        autoplaySpeed: 5000,
         slidesToShow: 3,
         slidesToScroll: 1,
-        dots: false,
         responsive: [
           {
             breakpoint: 768,
